@@ -11,3 +11,5 @@ This project configures secure communication between an Amazon EC2 instance and 
 
 ## 🔧 Implementation:
 ### Create an IAM User with required least privileges
+![IAM User Creation](Project1/S3-Access-from-EC2/images/1.png)
+
