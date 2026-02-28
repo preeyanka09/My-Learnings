@@ -58,7 +58,7 @@ Set outbound rules as follows:
 - SSH/22 to anywhere 0.0.0.0/0
 
 
-### Step 2: Create Launch Template
+### Step 2: Create Launch Template(Named MyTemplate)
 For EC2 User Data Script, use the following code
 ```
 	#!/bin/bash
@@ -78,53 +78,51 @@ For EC2 User Data Script, use the following code
 We cannot attach ALB directly to ASG. Hence we need a Target Group.
 
 Also, load balancer scheme must be Internet-facing, not internal. Thr Internet-facing scheme gives URL that can be publicly accessed.
-
-
-
-
-
+![MyALB](images/1.png)
+<br>
+<br>
 Note: Disable the health checks for ELB, since if your ASG is using an ELB/ALB health check, even one failed check can make it terminate the instance.
 
-
-
 ### Step 3: Create Auto Scaling Group(named MyASG)
-When multiple users hit the same server, the application or the server slows down or crashes. Hence, we require the instances to multiply by itself when traffic spikes. THat is known as Auto Scaling. 
+- Choose Launch Template or Configuration
+	- Name: MyASG
+   	- Launch Template: MyTemplate
+   	- Version: 2
+ 
+   
+- Choose Instance Configuration
+  Define which AZ and Subnets your ASG can use in the chosen VPC (Select all)
+
+  
+- Configure Advanced Options
+
+
+- Configure Group size and scaling
+  	- Desired: 1, Minimum- 1, Maximum- 5
+  	- Automatic Scaling: Target Tracking Scaling policy
+  	- Metric type: Average CPU Utilization
+  	- Target Value: 20
+  	- Instance Warmup: 30 secs
+
+ 
+When multiple users hit the same server, the application or the server slows down or crashes. Hence, we require the instances to multiply by itself when traffic spikes. That is known as Auto Scaling. 
 
 However, users knows only one IP address. So the users hit the request on one point(Load Balancer URL) and the load balancer decides to which instance in the Auto Scaling Group, the traffic must redirect.
 
+### Step 4: Verify if the application is running by hitting the following URL
+`
+MyALB-1263279054.us-east-1.elb.amazonaws.com
+`
+
+###  Key Outcome:
+- Automatic scaling (scale in / scale out)
+- Fault-tolerant and highly resilient application architecture
+
+![Output](images/2.png)
+
+## This project strengthens the practical understanding of AWS infrastructure, high availability design, and real-world cloud deployment workflows.
 
 
-
-Note: **Block Public Access settings for this bucket** should be disabled
-### Upload the file into S3 bucket
-![S3 Bucket File Upload](images/s31.png)
-### Create Access key
-![Access Key Generation](images/iam1.png)
-![Access Key Generation](images/iam2.png)
-![Access Key Generation](images/iam3.png)
-### Open terminal and connect to EC2 instance
-![Connection to EC2](images/ec21.png)
-### Run the following code
-```
-sudo apt update
-sudo apt install unzip
-
-curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-unzip awscliv2.zip
-sudo ./aws/install
-```
-
-Note: check AWS version using **aws --version**
-
-
-### Setup AWS credentials using **aws configure**
-Enter the access key and secret access key here that was fetched from AWS console
-
-
-### Verify the access using aws commands
-![S3 Access Verification](images/verify.png)
-
-## It is a great hands-on exercise in IAM, EC2, S3, and AWS CLI, reinforcing how important secure and minimal-access configurations are in cloud engineering.
 
 
 
