@@ -1,4 +1,4 @@
-# 🚀 Deploy a static website in AWS using Amazon S3 and CoudFront
+# 🚀 Deploy a static website in AWS using Amazon S3 and CloudFront
 This project hosts a static website on Amazon S3 and delivers it globally through Amazon CloudFront.
 
 ## 🔐 Key Steps overview
@@ -52,13 +52,37 @@ Go to Permissions -> Bucket Policy -> Edit -> Paste the below code snippet
     ]
 }
 ```
-### Step 4: Hit the Se3 Bucket endpoint
+### Step 4: Hit the S3 Bucket endpoint
+![S3 Bucket Creation](images/s3-endpoint.png)
+<br><br>
+The default webpage will be displayed.
+<br><br>
 ![S3 Bucket Creation](images/s3.png)
+<br><br>
+Error webpage.
+<br><br>
+![S3 Bucket Creation](images/s3-error.png)
+
+### Step 5: Setting up the CloudFront CDN
+- CloudFront -> Create Distribution
+- Choose a plan: Pay as you go -> Next
+- Distribution Name: Enter the distribution name (here CloudFront-S3)
+- Distribution Type: Single website or app -> Next
+- Origin type: Amazon S3
+- S3 Origin: Select the bucket for which you want to deploy CloudFront (here aws-bucket-priya)
+- Origin path(Optional)
+- Settings(Use recommended settings) -> Next
+- Enable Security: Donot enable security protection -> Next -> Create Distribution
+
+Note: Edit the distribution to add the default root object as index.html. Default root object should not be empty: it should either be index.html. If Default Root Object isn’t set, CloudFront doesn’t know which file to load first, so it tries to fetch the directory root… which S3 rejects → XML AccessDenied.
 
 
+Once the distribution is created, we get the CloudFront Domain Name as follows
+![CloudFront](images/cloudfront-domainname.png)
 
 
 ## It is a great hands-on exercise in IAM, EC2, S3, and AWS CLI, reinforcing how important secure and minimal-access configurations are in cloud engineering.
+
 
 
 
