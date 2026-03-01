@@ -46,7 +46,21 @@ Enter the access key and secret access key here that was fetched from AWS consol
 ### Verify the access using aws commands
 ![S3 Access Verification](images/verify.png)
 
+#### Copy the files in S3 to local(EC2 instance)
+![S3 Access Verification](images/verify1.png)
+![S3 Access Verification](images/verify2.png)
+
+Copy the content of local EC2 to S3: `aws s3 cp filename s3://bucketname`
+
+
+Sync the data between local EC2 and S3: 
+![S3 Access Verification](images/verify1.png)
+
+
+This way we can upload the files in EC2 to S3 directly.
+
 ## It is a great hands-on exercise in IAM, EC2, S3, and AWS CLI, reinforcing how important secure and minimal-access configurations are in cloud engineering.
+
 
 
 
