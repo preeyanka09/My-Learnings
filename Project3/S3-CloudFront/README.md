@@ -78,10 +78,15 @@ Note: Edit the distribution to add the default root object as index.html. Defaul
 
 
 Once the distribution is created, we get the CloudFront Domain Name as follows
-![CloudFront](images/cloudfront-domainname.png)
+![CloudFront](images/cloudfront_domainname.png)
 
 
-## It is a great hands-on exercise in IAM, EC2, S3, and AWS CLI, reinforcing how important secure and minimal-access configurations are in cloud engineering.
+### Step 5: Hit the CloudFront Domain Name: The content will be served.
+![CloudFront](images/cloudfront.png)
+
+## This way we have a fast, secure, globally distributed static website running through CloudFront’s CDN.
+
+
 
 
 
