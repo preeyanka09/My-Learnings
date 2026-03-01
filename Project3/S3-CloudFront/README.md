@@ -52,40 +52,14 @@ Go to Permissions -> Bucket Policy -> Edit -> Paste the below code snippet
     ]
 }
 ```
-
+### Step 4: Hit the Se3 Bucket endpoint
 ![S3 Bucket Creation](images/s3.png)
-Note: **Block Public Access settings for this bucket** should be disabled
 
 
-### Upload the file into S3 bucket
-![S3 Bucket File Upload](images/s31.png)
-### Create Access key
-![Access Key Generation](images/iam1.png)
-![Access Key Generation](images/iam2.png)
-![Access Key Generation](images/iam3.png)
-### Open terminal and connect to EC2 instance
-![Connection to EC2](images/ec21.png)
-### Run the following code
-```
-sudo apt update
-sudo apt install unzip
 
-curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-unzip awscliv2.zip
-sudo ./aws/install
-```
-
-Note: check AWS version using **aws --version**
-
-
-### Setup AWS credentials using **aws configure**
-Enter the access key and secret access key here that was fetched from AWS console
-
-
-### Verify the access using aws commands
-![S3 Access Verification](images/verify.png)
 
 ## It is a great hands-on exercise in IAM, EC2, S3, and AWS CLI, reinforcing how important secure and minimal-access configurations are in cloud engineering.
+
 
 
 
