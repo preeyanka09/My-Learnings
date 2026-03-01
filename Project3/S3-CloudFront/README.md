@@ -84,7 +84,8 @@ Once the distribution is created, we get the CloudFront Domain Name as follows
 ### Step 5: Hit the CloudFront Domain Name: The content will be served.
 ![CloudFront](images/cloudfront.png)
 
-## This way we have a fast, secure, globally distributed static website running through CloudFront’s CDN.
+## This way when a user visits our site, CloudFront delivers the content from the nearest edge location, dramatically reducing latency, speeding up load times, and improving the user experience. Hence we have a fast, secure, globally distributed static website running through CloudFront’s CDN.
+
 
 
 
