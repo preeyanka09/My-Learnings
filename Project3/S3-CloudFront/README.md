@@ -61,7 +61,7 @@ The default webpage will be displayed.
 <br><br>
 Error webpage.
 <br><br>
-![S3 Bucket Creation](images/s3-error.png)
+![S3 Bucket Creation](images/error.png)
 
 ### Step 5: Setting up the CloudFront CDN
 - CloudFront -> Create Distribution
@@ -85,6 +85,7 @@ Once the distribution is created, we get the CloudFront Domain Name as follows
 ![CloudFront](images/cloudfront.png)
 
 ## This way we have a fast, secure, globally distributed static website running through CloudFront’s CDN.
+
 
 
 
