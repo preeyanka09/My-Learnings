@@ -42,7 +42,7 @@ mysql -h database-1.c07m8igqcg94.us-east-1.rds.amazonaws.com -P 3306 -u admin -p
 ### Step 7: Test the database
 ![Test Database](images/verify3.png)
 
-### Step 8: 
+### Step 8: Application Connection from an EC2 instance to an RDS MySQL database
 #### Install Python and pip
 ```
 sudo apt update
@@ -76,8 +76,9 @@ Your prompt will change to something like:
 `pip install pymysql`
 
 #### Create Python Application
-vim app.py
-Place the following code in the file created.
+`vim app.py`
+
+Place the following code inside the file created.
 
 ```
 import pymysql
@@ -118,7 +119,11 @@ except Exception as e:
     print("Connection failed:", e)
 
 ```
+### Step 9: Expected Output
+![Test Database](images/verify3.png)
+
 Note: Both EC2 Instance and RDS must be in the same VPC.
+
 
 
 
