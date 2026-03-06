@@ -8,9 +8,9 @@ This project demonstrates a clean approach for connecting an Amazon EC2 instance
 - Established connection between EC2 and RDS.
 
 ## 🔧 Implementation
-### Step 1: Create an IAM Role(named EC2-RDS) 
+### Step 1: Create an IAM Role(named EC2-RDS-Role) 
 - Use Case: EC2
-- Allowed Permissions: RDSFullAccess anf CloudWatchEventsFullAccess
+- Allowed Permissions: AmazonRDSFullAccess anf CloudWatchEventsFullAccess
 
 ### Step 2: Create an EC2 Instance(named AWS-Instance with default settings)
 Note: : Choose Ubuntu AMI for EC2 instance
@@ -36,13 +36,90 @@ sudo apt install mysql-client
 `
 mysql -h database-1.c07m8igqcg94.us-east-1.rds.amazonaws.com -P 3306 -u admin -p
 `
+
 ![RDS Connection](images/verify3.png)
 
 ### Step 7: Test the database
 ![Test Database](images/verify3.png)
 
+### Step 8: 
+#### Install Python and pip
+```
+sudo apt update
+sudo apt install python3 python3-pip -y
+```
 
+#### Check installation
+```
+python3 --version
+pip3 --version
+```
+
+#### Install MySQL Python Library
+`pip3 install pymysql`
+
+Note: It will throw an error: externally-managed-environment. This error occurs because newer Debian/Ubuntu systems (Python 3.12+) follow PEP 668, which prevents pip from installing packages globally in the system Python. This is to avoid breaking OS-managed packages. Hence follow the next steps.
+
+#### Install venv if not installed
+`sudo apt install python3-venv`
+
+#### Create a virtual environment
+`python3 -m venv myenv`
+
+#### Activate it
+`source myenv/bin/activate`
+
+Your prompt will change to something like:
+(myenv) ubuntu@ip-xxx:~$
+
+#### Install pymysql
+`pip install pymysql`
+
+#### Create Python Application
+vim app.py
+Place the following code in the file created.
+
+```
+import pymysql
+
+host = "database-1.c07m8igqcg94.us-east-1.rds.amazonaws.com"
+user = "admin"
+password = "admin123"
+database = "aws"
+
+try:
+    connection = pymysql.connect(
+        host=host,
+        user=user,
+        password=password,
+        database=database,
+        port=3306
+    )
+
+    print("Connected to RDS MySQL!")
+
+    cursor = connection.cursor()
+    cursor.execute("SHOW DATABASES;")
+
+    for db in cursor.fetchall():
+        print(db)
+
+
+    cursor.execute("SELECT * FROM learners;")
+    rows = cursor.fetchall()
+
+    print("Rows under the table are as follows")
+    for row in rows:
+         print(row)
+
+    connection.close()
+
+except Exception as e:
+    print("Connection failed:", e)
+
+```
 Note: Both EC2 Instance and RDS must be in the same VPC.
+
 
 
 
