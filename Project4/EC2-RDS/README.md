@@ -1,4 +1,4 @@
-# 🚀 Connect an EC2 Instance to RDS MySQL database
+# 🚀 Connect an EC2 Instance to RDS MySQL database to perform database CRUD Operations
 This project demonstrates a clean approach for connecting an Amazon EC2 instance to Amazon RDS MySQL database.
 ## 🔐 Key Steps overview
 - Created an IAM Role.
@@ -37,10 +37,12 @@ sudo apt install mysql-client
 mysql -h database-1.c07m8igqcg94.us-east-1.rds.amazonaws.com -P 3306 -u admin -p
 `
 
-![RDS Connection](images/verify3.png)
+![RDS Connection](images/connection.png)
 
 ### Step 7: Test the database
-![Test Database](images/verify3.png)
+![Test Database](images/test1.png)
+![Test Database](images/test2.png)
+![Test Database](images/test3.png)
 
 ### Step 8: Application Connection from an EC2 instance to an RDS MySQL database
 #### Install Python and pip
@@ -78,51 +80,12 @@ Your prompt will change to something like:
 #### Create Python Application
 `vim app.py`
 
-Place the following code inside the file created.
-
-```
-import pymysql
-
-host = "database-1.c07m8igqcg94.us-east-1.rds.amazonaws.com"
-user = "admin"
-password = "admin123"
-database = "aws"
-
-try:
-    connection = pymysql.connect(
-        host=host,
-        user=user,
-        password=password,
-        database=database,
-        port=3306
-    )
-
-    print("Connected to RDS MySQL!")
-
-    cursor = connection.cursor()
-    cursor.execute("SHOW DATABASES;")
-
-    for db in cursor.fetchall():
-        print(db)
-
-
-    cursor.execute("SELECT * FROM learners;")
-    rows = cursor.fetchall()
-
-    print("Rows under the table are as follows")
-    for row in rows:
-         print(row)
-
-    connection.close()
-
-except Exception as e:
-    print("Connection failed:", e)
-
-```
-### Step 9: Expected Output
-![Test Database](images/verify3.png)
+### Step 9: Run the file `python3 app.py`
+![Test Database](images/test4.png)
 
 Note: Both EC2 Instance and RDS must be in the same VPC.
+##This project provides hands-on experience with cloud networking, database connectivity, and application-level data operations on AWS.
+
 
 
 
