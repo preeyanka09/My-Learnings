@@ -15,6 +15,10 @@ The setup includes:
 
 This architecture allows public internet access for one instance while keeping another instance private and secure.
 
+## 💡Architecture Diagram
+![VPC Architecture](images/architecture.png)
+
+
 ## 🔧 Implementation
 ### Step 1 : Create an Custom VPC
 Create a VPC with the following configuration:
@@ -88,12 +92,8 @@ Now SSH to private EC2 instance from public EC2 instance.
 
 `ssh -i KeyPairNorth.pem ubuntu@private_ip_address_of_private_ec2`
 
-## 🔐Architecture Diagram
-![VPC Architecture](/images/architecture.png)
 
-
-## It is a great hands-on exercise in IAM, EC2, S3, and AWS CLI, reinforcing how important secure and minimal-access configurations are in cloud engineering.
-
+## This project is created as part of hands-on cloud learning journey to better understand how networking works inside AWS. Building a VPC from scratch helped me gain practical knowledge of core infrastructure components such as subnets, route tables, internet gateways, and secure instance connectivity.
 
 
 
