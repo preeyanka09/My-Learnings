@@ -60,16 +60,27 @@ Network Settings:
 Connect to the EC2 instance from outside world, unable to establish connection. Hence, create an Internet Gateway.
 
 ### Step 5: Create Internet Gateway
+
+Users cannot directly connect to the public subnet. There must be an Internet Gateway. 
+An internet gateway enables resources in the public subnets (such as EC2 instances) to connect to the internet if the resource has a public IPv4 address or an IPv6 address. Similarly, resources on the internet can initiate a connection to resources in the subnet using the public IPv4 address or IPv6 address. For example, an internet gateway enables us to connect to an EC2 instance in AWS using our local computer. To use an internet gateway, we must attach it to a VPC and configure routing.
+
+Create Internet Gateway with the following configuration:
 - Name: test-igw
 - Attach to VPC: test-vpc
 
 ### Step 6: Create Route Table and associate it with public subnet
+
+Route table defines the rules that determine how data packets move between subnets, the internet, and other networks. 
+
 - Name: test-rt
 - VPC: test-vpc
 
 Click on route table connected -> Subnet Associations -> Edit Subnet Associations -> Check on public subnet -> Save
 
 ### Step 7: Connect Internet Gateway to Route Table
+
+If the route is connected to the internet gateway or the destination of the route table is connected to IGW, it becomes a public subnet.
+
 Goto test-rt -> Routes -> Edit route -> Add route 
 - Destination: 0.0.0.0/0 ---- where the traffic is going
 - Target: Internet Gateway(test-igw) ----  how it gets there
