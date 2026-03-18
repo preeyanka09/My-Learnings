@@ -21,6 +21,9 @@ This architecture allows public internet access for one instance while keeping a
 
 ## 🔧 Implementation
 ### Step 1 : Create an Custom VPC
+
+VPC is an AWS service that allows us to create a virtual private cloud for isolation and security. 
+
 Create a VPC with the following configuration:
 - Name: test-vpc
 - IPv4 CIDR block: IPv4 CIDR manual input
@@ -29,6 +32,11 @@ Create a VPC with the following configuration:
 - Tenacy: Default
 
 ### Step 2 : Create Public Subnet
+
+The concept of subnet divides the entire network into parts- e.g. we can have web server in  public subnet which can be accessed publicly, where as the application server or database can reside in private subnet. The user is given access of only the public subnet, not the private subnet. Resources in the private subnet can only be accessed from the public subnet of that network.
+
+Create public subnet with the following configuration:
+
 - VPC ID: test-vpc
 - Subnet Name: test-public-subnet
 - AZ: us-east-1a
