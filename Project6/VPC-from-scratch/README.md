@@ -175,7 +175,7 @@ Goto VPC -> Peering Connections
 ### Step 8: Accept Peering request
  Select VPC(test-prod-peering) : Status -> Pending acceptance. Goto Actions -> Accept Request -> Accept
 
- ![Pending Acceptance](images/pendingacceptance.png)
+ ![Peering Acceptance](images/peeringacceptance.png)
 
  ### Step 9: Modify Route Table for test-rt
  - Destination: 192.0.0.0/16 (prod-vpc)
