@@ -120,6 +120,10 @@ MyALB-1263279054.us-east-1.elb.amazonaws.com
 
 ![Output](images/2.png)
 
+### Quick fix: 
+Deleting the ASG also terminates the instances associated with it.
+
+
 ## This project strengthens the practical understanding of AWS infrastructure, high availability design, and real-world cloud deployment workflows.
 
 
