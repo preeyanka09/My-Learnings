@@ -30,7 +30,23 @@ Note: Check if the two instances are connected in two different AZs or not.
 ### Step 4: Create Bastion Host
 Deploy a Bastion Host in the public subnet to securely access instances located in private subnets.
 
-### Step 5: Copy the key (pem file) from local to Bastion Host
+### Step 5: SSH into private EC2 instance from the Bastion Host
+- Step a: Copy the keypair file to public EC2 instance from laptop
+
+`scp -i \mnt\c\Users\preey\Downloads\KeyPairNorth.pem \mnt\c\Users\preey\Downloads\KeyPairNorth.pem ubuntu@<public_ip_address_of_public_ec2>:/home/ubuntu `
+
+- Step b: ssh into public EC2 instance
+- Step c: ssh into private EC2 instance from public EC2 instance
+
+`ssh -i KeyPairNorth.pem ubuntu@private_ip_address_of_private_ec2`
+
+### Step 6: Install and configure the web application on EC2 instances running in private subnets
+
+Write simple web content under `vim index.html`
+
+Start a basic HTTP web server in the current directory using `python3 -m http.server 8000`
+
+### Step 7: Create a Load Balancer in the public subnet to distribute incoming traffic across private EC2 instances.
 
 
 
