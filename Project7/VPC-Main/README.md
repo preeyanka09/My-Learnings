@@ -54,9 +54,16 @@ Write simple web content under `vim index.html`
 Start a basic HTTP web server in the current directory using `python3 -m http.server 8000`
 
 ### Step 7: Create a Load Balancer in the public subnet to distribute incoming traffic across private EC2 instances.
-http 80- from anywhere
-
-tg: protocol http, port:8000
+- Security Group configuration:
+  - HTTP 80- from anywhere
+ 
+- Target Group configuration:
+  - Protocol: HTTP
+  - Port: 8000
+ 
+### Step 8: Hit the LB DNS into the browser
+![First Subnet Output](images/output_first.png)
+![Second Subnet Output](images/output_second.png)
 
 
 ## It is a great hands-on exercise in IAM, EC2, S3, and AWS CLI, reinforcing how important secure and minimal-access configurations are in cloud engineering.
