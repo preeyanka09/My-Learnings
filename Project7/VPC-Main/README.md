@@ -12,11 +12,13 @@ This project focuses on designing and implementing a real-time, production-grade
 
 ## 🔧 Implementation
 ### Step 1: Create a custom VPC to host the entire infrastructure with proper network isolation.
+- VPC Endpoint: None
 
 ### Step 2: Create a Launch Template defining EC2 instance configurations such as AMI, instance type, key pair, and security groups
 - Security Group configuration:
   - SSH from anywhere
-  - TCP: Port 8000 from anywhere
+  - HTTP from anywhere
+  - TCP: Port 8000 from SG-LB
  
 ### Step 3: Configure an Auto Scaling Group within the VPC to automatically manage and scale EC2 instances across multiple Availability Zones.
 - The EC2 instances must be in private subnet (us-east-1, us-east-2)
@@ -29,6 +31,11 @@ Note: Check if the two instances are connected in two different AZs or not.
 
 ### Step 4: Create Bastion Host
 Deploy a Bastion Host in the public subnet to securely access instances located in private subnets.
+
+- Auto assign public IP: Enable
+- Security Group configuration:
+  - SSH from anywhere
+  - HTTP from anywhere
 
 ### Step 5: SSH into private EC2 instance from the Bastion Host
 - Step a: Copy the keypair file to public EC2 instance from laptop
@@ -47,7 +54,9 @@ Write simple web content under `vim index.html`
 Start a basic HTTP web server in the current directory using `python3 -m http.server 8000`
 
 ### Step 7: Create a Load Balancer in the public subnet to distribute incoming traffic across private EC2 instances.
+http 80- from anywhere
 
+tg: protocol http, port:8000
 
 
 ## It is a great hands-on exercise in IAM, EC2, S3, and AWS CLI, reinforcing how important secure and minimal-access configurations are in cloud engineering.
