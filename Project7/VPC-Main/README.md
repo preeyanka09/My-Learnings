@@ -63,6 +63,7 @@ Start a basic HTTP web server in the current directory using `python3 -m http.se
  
 ### Step 8: Hit the LB DNS into the browser
 ![First Subnet Output](images/output_first.png)
+
 ![Second Subnet Output](images/output_second.png)
 
 
