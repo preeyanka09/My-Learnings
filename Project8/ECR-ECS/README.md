@@ -29,11 +29,14 @@ Note: : Choose Ubuntu AMI for the EC2 instance
 
 ### Step 4: Build the Dockerfile and push it to ECR
 #### Step a: Create Repository in ECR (named node-app)
+!![Push Commands](images/createrepo.png)
 - Visibility Settings: Public
 - Name: node-app
 - Content type:
     - OS: Linux
     - Architecture: Select All
+ !![Push Commands](images/createrepo2.png)
+
  
 #### Step b Install Docker and  AWS CLI on EC2 instance
 - Install Docker
@@ -68,9 +71,10 @@ Click on User -> Permissions -> Add permissions -> Attach Policies directly
   - AmazonElasticContainerRegistryPublicPowerUser
   - AmazonElasticContainerRegistryPublicReadOnly
  
-### Step 5: Run the commands given in View Push Commands in ECR
+### Step 5: Run the commands given in View Push Commands in ECR (Run first command)
 
-![Push Commands](images/pushcommands.png)
+![Push Commands](images/push.png)
+![Push Commands](images/push2.png)
 
 Output
 ![Login Succeeded](images/login.png)
@@ -81,10 +85,10 @@ cd node-todo-cicd
 ls
 docker build -t node-app .
 ```
-
+![Login Succeeded](images/dockerbuild.png)
 ### Step 7: After build completes, tag the image (Run third command)
 ```
-docker images
+docker tag node-app:latest public.ecr.aws/j1s2w0y3/node-app:latest
 ```
 Output: Image is tagged
 
@@ -92,17 +96,22 @@ Output: Image is tagged
 ### Step 8: Push the image from EC2 to ECR (Run fourth command)
 
 Output: Image is pushed to ECR
+![Login Succeeded](images/dockerpush.png)
 
 ### Step 9: Goto ECS and Create cluster with Infrastructure as Fargate.
 - Name: node-app-cluster
 - Infrastructure: Fargate
 - Monitoring: Use Conatainer Insights
+![Create Cluster](images/createcluster.png)
+
 
 ### Step 10: Create Task Definition (Equivalent to docker run command)
 - Family: node-todo-app-td
 - Infrastructure: AWS Fargate
 - Task Size: 2 CPU, 8 GB
 - Task Role: ecsTaskExecutionRole
+  ![Task Definition](images/taskdef.png)
+
   
    Steps for creating ecsTaskExecutionRole:
     - Goto IAM -> Roles -> Create Role
@@ -124,7 +133,13 @@ Select Task Definition -> Deploy -> Run task
 - Capacity Provider: Fargate
 
 ### Click on the Task, the last status should be running. Goto public IP, then hit publicIP:8000 on browser.
+![Task Status](images/taskstatus.png)
+![Task Public IP](images/publiciip.png)
+
 Note: Port 8000 may not run, goto ENI ID from ECS -> Click on it -> Security Groups -> Edit inbound rules -> Add port 8000
+![Container Output](images/outputcontainer.png)
+![Container Output](images/error1.png)
+
 
 ### Step 13: Check logs on CloudWatch
 - Goto CloudWatch
@@ -133,7 +148,7 @@ Note: Port 8000 may not run, goto ENI ID from ECS -> Click on it -> Security Gro
 - Select Log Streams
 - Click on Stream
 - View Logs
-
+![CloudWatch Logs](images/logs1.png)
 
 ## This project demonstrates fully automated, scalable, serverless deployment pipeline leveraging GitHub → Docker → ECR → ECS Fargate → CloudWatch. This setup improves deployment speed, reliability, and observability while eliminating the need to manage servers manually.
 
