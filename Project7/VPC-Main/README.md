@@ -1,6 +1,8 @@
 # 🚀 Real-Time Production AWS VPC Architecture with Multi-AZ Deployment
 This project focuses on designing and implementing a real-time, production-grade AWS VPC architecture with a Multi-Availability Zone (Multi-AZ) deployment to ensure high availability, fault tolerance, and scalability.
 
+![Architecture Diagram](images/vpc.png)
+
 ## 🔐 Key Steps overview
 - Created VPC
 - Created Launch Template in the VPC created
@@ -60,6 +62,9 @@ Start a basic HTTP web server in the current directory using `python3 -m http.se
 - Target Group configuration:
   - Protocol: HTTP
   - Port: 8000
+
+ ![Load Balancer](images/lb_az.png)
+
  
 ### Step 8: Hit the LB DNS into the browser
 ![First Subnet Output](images/output_first.png)
