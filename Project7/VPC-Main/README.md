@@ -1,7 +1,7 @@
 # 🚀 Real-Time Production AWS VPC Architecture with Multi-AZ Deployment
 This project focuses on designing and implementing a real-time, production-grade AWS VPC architecture with a Multi-Availability Zone (Multi-AZ) deployment to ensure high availability, fault tolerance, and scalability.
 
-![Architecture Diagram](images/vpc.png)
+![Architecture Diagram](images/vpc.jpg)
 
 ## 🔐 Key Steps overview
 - Created VPC
