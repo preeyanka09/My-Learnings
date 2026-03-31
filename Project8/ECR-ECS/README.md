@@ -73,7 +73,7 @@ Click on User -> Permissions -> Add permissions -> Attach Policies directly
  
 ### Step 5: Run the commands given in View Push Commands in ECR (Run first command)
 
-![Push Commands](images/push.png)
+![Push Commands](images/push1.png)
 ![Push Commands](images/push2.png)
 
 Output
@@ -134,11 +134,12 @@ Select Task Definition -> Deploy -> Run task
 
 ### Click on the Task, the last status should be running. Goto public IP, then hit publicIP:8000 on browser.
 ![Task Status](images/taskstatus.png)
-![Task Public IP](images/publiciip.png)
+![Task Public IP](images/publicip.png)
+![Container Output](images/outputapp.png)
 
-Note: Port 8000 may not run, goto ENI ID from ECS -> Click on it -> Security Groups -> Edit inbound rules -> Add port 8000
-![Container Output](images/outputcontainer.png)
-![Container Output](images/error1.png)
+Note(Troubleshoot Tip): Port 8000 may not run, goto ENI ID from ECS -> Click on it -> Security Groups -> Edit inbound rules -> Add port 8000
+
+![Troubleshoot](images/error1.png)
 
 
 ### Step 13: Check logs on CloudWatch
